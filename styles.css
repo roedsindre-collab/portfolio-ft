@@ -1,0 +1,238 @@
+
+/* Grunnleggende */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+body {
+  min-height: 100vh;
+  color: white;
+  overflow-x: hidden;
+  background: #111;
+  position: relative;
+}
+
+/* Bakgrunn med gradient */
+body::before {
+  content:'';
+  position: fixed;
+  top:0; left:0; right:0; bottom:0;
+  background: linear-gradient(120deg, #ffa600, #2b8844, #fc3b01ce, #000000);
+  background-size: 400% 400%;
+  z-index:-2;
+  animation: gradientBG 15s ease infinite;
+}
+@keyframes gradientBG {
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* Header */
+header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: rgba(0,0,0,0.7);
+  z-index: 1000;
+}
+header .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
+}
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+nav ul li a:hover {
+  background: #fff;
+  color: #111;
+}
+
+/* Hero */
+.hero {
+  height: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 6px black;
+}
+.hero-content p {
+  font-size: 1.2rem;
+  text-shadow: 1px 1px 4px black;
+}
+
+/* Container generelt */
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+/* Telefon-boks for nyheter */
+.phone-box {
+  background: linear-gradient(145deg, #ec0202, #000000);
+  border-radius: 40px;
+  padding: 25px;
+  margin: 30px auto;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4), inset 0 0 5px rgba(0,0,0,0.1);
+  border: 8px solid #222;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.phone-box::before {
+  content: '';
+  width: 60px;
+  height: 8px;
+  background: #333;
+  border-radius: 4px;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.phone-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 0 8px rgba(0,0,0,0.1);
+}
+
+/* Fotballmål-boks for Salah */
+.goal-bg {
+  position: relative;
+  background: linear-gradient(rgba(255, 1, 1, 0.5), rgba(0,0,0,0.5)),
+              url('https://upload.wikimedia.org/wikipedia/commons/3/32/Mohamed_Salah_2021.jpg') no-repeat center center;
+  background-size: cover;
+  clip-path: polygon(
+    10% 0%, 90% 0%,
+    100% 50%, 90% 100%, 10% 100%, 0% 50%
+  );
+  border-radius: 20px;
+  padding: 25px;
+  margin: 30px auto;
+  max-width: 600px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4), inset 0 0 5px rgba(0,0,0,0.1);
+  color: #fff;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.goal-bg:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 0 8px rgba(0,0,0,0.1);
+}
+
+/* Liverpool-bakgrunn for nyhet3 */
+.liverpool-bg {
+  position: relative;
+  background: linear-gradient(rgba(252, 0, 0, 0.6), rgba(0,0,0,0.6)), 
+              url('https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg') no-repeat center center;
+  background-size: 150px auto;
+  border-radius: 40px;
+  padding: 25px;
+  margin: 30px auto;
+  max-width: 600px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4), inset 0 0 5px rgba(0,0,0,0.1);
+  border: 8px solid #222;
+  color: #fff;
+}
+.liverpool-bg:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 0 8px rgba(0,0,0,0.1);
+}
+
+/* Responsivt */
+@media(max-width:768px){
+  nav ul {
+    flex-direction: column;
+    background: rgba(0,0,0,0.9);
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    display: none;
+  }
+  nav ul.show {
+    display: flex;
+  }
+  nav li {
+    margin: 15px 0;
+    text-align: center;
+  }
+  .menu-toggle {
+    display: block;
+    cursor: pointer;
+    color: #fff;
+    font-size: 1.5rem;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+}
+@media(min-width:769px){
+  .menu-toggle {
+    display: none;
+  }
+}
+
+/* Teknologi-scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #1e1e1e;
+  border-radius: 10px;
+  margin: 5px 0;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ae00ff, #0077ff);
+  border-radius: 10px;
+  border: 3px solid #1e1e1e;
+  transition: background 0.3s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00ffea, #00aaff);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ff0000 #0502b8;
+}
+body::after {
+  content: '';
+  position: fixed;
+  top:0; right:0;
+  width: 12px; height: 100%;
+  pointer-events: none;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #00f0ff, #0077ff);
+  box-shadow: 0 0 15px #00f0ff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 9999;
+}
+body.scrolling::after {
+  opacity: 0.7;
+}
